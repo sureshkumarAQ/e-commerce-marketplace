@@ -1,9 +1,22 @@
 const express = require("express");
-const controller = require("../controller/controller");
+const authController = require("../controller/authController");
+const sellerController = require("../controller/sellerController");
+const authorization = require("../middleware/authorization");
 
 const route = express.Router();
 
-route.post("/auth/register", controller.Register);
-route.post("/auth/login", controller.Login);
+// These routes for auth
+route.post("/auth/register", authController.Register);
+route.post("/auth/login", authController.Login);
+
+// These routes for seller
+
+route.post(
+  "/seller/create-catalog",
+  authorization,
+  sellerController.createCatalog
+);
+
+// These routes for buyer
 
 module.exports = route;
