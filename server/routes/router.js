@@ -28,4 +28,10 @@ route.post(
 
 route.get("/buyer/list-of-sellers", authorization, buyerController.sellerList);
 
+route.get(
+  "/buyer/seller-catalog/:seller_id",
+  authorization,
+  buyerController.sellerCatalog
+);
+
 module.exports = route;
