@@ -20,6 +20,7 @@ connectDB();
 
 // Parse request  to body parser
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
 app.use(cookieParser());
 
 // Load routers
