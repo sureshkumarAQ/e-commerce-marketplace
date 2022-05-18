@@ -52,3 +52,30 @@ exports.createOrder = async (req, res) => {
     });
   }
 };
+
+exports.sellerList = async (req, res) => {
+  try {
+    const userID = req.user._id;
+
+    const user = await User.findById({ _id: userID });
+
+    // console.log(user.type);
+    // If loggedin user is a seller we cannot allow to access seller list
+    if (user.type === "seller") {
+      res.status(400).send({
+        message:
+          "A seller cannot access list of other seller. please login with buyer account",
+      });
+    }
+
+    // List of seller with its catalog
+    const seller = await Catalog.find()
+      .select("-_id -__v")
+      .populate("seller", ["username", "type"]);
+    res.send(seller);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred",
+    });
+  }
+};

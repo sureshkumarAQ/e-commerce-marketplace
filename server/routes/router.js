@@ -26,4 +26,6 @@ route.post(
   buyerController.createOrder
 );
 
+route.get("/buyer/list-of-sellers", authorization, buyerController.sellerList);
+
 module.exports = route;
