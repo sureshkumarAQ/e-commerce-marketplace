@@ -1,5 +1,6 @@
 const Catalog = require("../models/catalog.js");
 const User = require("../models/user.js");
+const Order = require("../models/order.js");
 
 exports.createCatalog = async (req, res) => {
   try {
@@ -50,6 +51,29 @@ exports.createCatalog = async (req, res) => {
     res.status(500).send({
       message:
         err.message || "Some error occurred while creating a new catalog",
+    });
+  }
+};
+
+exports.getOrders = async (req, res) => {
+  try {
+    const userID = req.user._id;
+    const user = await User.findById({ _id: userID });
+    if (user.type === "buyer") {
+      res.status(400).send({
+        message:
+          "A buyer can`t take orders so how can I display their orders. please login with seller account",
+      });
+    }
+
+    const orders = await Order.find({ seller: userID })
+      .select("-_id -__v -seller")
+      .populate("buyer", ["username", "type"]);
+
+    res.status(201).send(orders);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while fetching orders",
     });
   }
 };

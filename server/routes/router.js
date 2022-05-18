@@ -18,6 +18,8 @@ route.post(
   sellerController.createCatalog
 );
 
+route.get("/seller/orders", authorization, sellerController.getOrders);
+
 // These routes for buyer
 
 route.post(
