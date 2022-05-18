@@ -20,4 +20,10 @@ route.post(
 
 // These routes for buyer
 
+route.post(
+  "/buyer/create-order/:seller_id",
+  authorization,
+  buyerController.createOrder
+);
+
 module.exports = route;

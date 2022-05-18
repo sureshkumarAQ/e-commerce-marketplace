@@ -75,11 +75,11 @@ exports.Login = async (req, res) => {
     //save user token
     user.token = token;
 
-    //Store jwt-token in cookie
-    res.cookie("jwtoken", token, {
-      expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
-      httpOnly: true,
-    });
+    //Store jwt-token in cookie we can also store token as a cookie
+    // res.cookie("jwtoken", token, {
+    //   expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+    //   httpOnly: true,
+    // });
 
     res.send({ jwtToken: token });
   } catch (err) {
