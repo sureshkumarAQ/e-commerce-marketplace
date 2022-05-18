@@ -19,4 +19,18 @@ For setting up the development environment, follow the steps given below.
    ```sh
    npm start
    ```
-5. Now open postman and test apis   
+5. Now open postman and test APIs
+# For testing APIs follow thses instructions:
+```sh
+http://localhost:3000/api/seller/create-catalog
+``` 
+for above API POSTMAN body should be like this
+![Screenshot (433)](https://user-images.githubusercontent.com/69745908/169004981-1c3f1727-e6bc-4061-9086-1f219708b272.png)
+
+and 
+```sh
+http://localhost:3000/api/buyer/create-order/628479c97ef501f4d246511c
+```
+for this API body should be like this
+![Screenshot (434)](https://user-images.githubusercontent.com/69745908/169005152-1d5e1524-b93d-44cd-99bd-ad362c343062.png)
+
